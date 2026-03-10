@@ -1,4 +1,6 @@
 using Core;
+using Infrastructure;
+using RestWithASPNET10.Configurations;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -6,8 +8,10 @@ var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddControllers();
 
-builder.Services.AddSingleton<MathService>();
+builder.Services.AddDatabaseConfiguration(builder.Configuration);
+
 builder.Services.AddScoped<IPersonService, PersonService>();
+builder.Services.AddScoped<IPersonRepository, PersonRepository>();
 
 var app = builder.Build();
 
