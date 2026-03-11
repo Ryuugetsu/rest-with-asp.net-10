@@ -36,7 +36,7 @@ namespace Infrastructure
             var result = _context.Persons.AsNoTracking().SingleOrDefault(p => p.Id == person.Id);
 
             if (result == null)
-                throw new Exception("Person not found.");
+                return null;
 
             _context.Persons.Update(person);
             _context.SaveChanges();
@@ -48,7 +48,7 @@ namespace Infrastructure
             var original = _context.Persons.SingleOrDefault(p => p.Id == id);
 
             if (original == null)
-                throw new Exception("Person not found.");
+                return;
 
             //- Somente para via de estudos, vou remover ao invés de setar status desativado
             _context.Persons.Remove(original);

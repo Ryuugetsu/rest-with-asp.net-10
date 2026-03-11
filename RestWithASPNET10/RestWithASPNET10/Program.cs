@@ -1,10 +1,13 @@
 using Core;
 using Infrastructure;
 using RestWithASPNET10.Configurations;
+using Serilog;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
+
+builder.AddSerilogLogging();
 
 builder.Services.AddControllers();
 
