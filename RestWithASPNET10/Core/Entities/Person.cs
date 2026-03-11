@@ -4,9 +4,8 @@ using System.ComponentModel.DataAnnotations.Schema;
 namespace Core
 {
     [Table("Person")]
-    public class Person
+    public class Person : BaseEntity
     {
-        [Key, DatabaseGenerated(DatabaseGeneratedOption.Identity)] public long Id { get; set; }
         [Required, MaxLength(80)] public string? FirstName { get; set; }
         [Required, MaxLength(80)] public string? LastName { get; set; }
         [Required, MaxLength(100)] public string? Address { get; set; }

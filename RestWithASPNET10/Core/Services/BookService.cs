@@ -2,8 +2,9 @@
 {
     public class BookService : IBookService
     {
-        private readonly IBookRepository _bookRepository;
-        public BookService(IBookRepository bookRepository)
+        private readonly IRepository<Book> _bookRepository;
+
+        public BookService(IRepository<Book> bookRepository)
         {
             _bookRepository = bookRepository;
         }
