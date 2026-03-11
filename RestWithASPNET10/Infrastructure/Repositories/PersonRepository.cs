@@ -5,9 +5,9 @@ namespace Infrastructure
 {
     public class PersonRepository : IPersonRepository
     {
-        private readonly SQLContext _context;
+        private readonly DataContext _context;
 
-        public PersonRepository(SQLContext context)
+        public PersonRepository(DataContext context)
         {
             _context = context;
         }

@@ -16,7 +16,7 @@ namespace RestWithASPNET10.Configurations
             }
 
             //- Da para mudar o provider de banco de dados aqui, caso queira usar outro banco, basta mudar o UseSqlServer para o provider desejado
-            services.AddDbContext<SQLContext>(options => options.UseSqlServer(connectionString));
+            services.AddDbContext<DataContext>(options => options.UseSqlServer(connectionString));
 
             return services;
         }
