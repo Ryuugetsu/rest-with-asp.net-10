@@ -24,7 +24,7 @@ namespace Infrastructure
 
         public Person Create(Person person)
         {
-            Person original = person.Id > 0 ? _context.Persons.FirstOrDefault(e => e.Id == person.Id) : null;
+            //Person original = person.Id > 0 ? _context.Persons.FirstOrDefault(e => e.Id == person.Id) : null;
 
             _context.Persons.Add(person);
             _context.SaveChanges();

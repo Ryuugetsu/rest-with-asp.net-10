@@ -14,7 +14,7 @@
             return _personRepository.FindAll();
         }
 
-        public Person FindById(int id)
+        public Person? FindById(int id)
         {
             return _personRepository.FindById(id);
         }
@@ -24,7 +24,7 @@
             return _personRepository.Create(person);
         }
 
-        public Person Update(Person person)
+        public Person? Update(Person person)
         {
             return _personRepository.Update(person);
         }

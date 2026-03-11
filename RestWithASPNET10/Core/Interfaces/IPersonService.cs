@@ -1,15 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace Core
+﻿namespace Core
 {
     public interface IPersonService
     {
-        Person Create(Person person);
-        Person Update(Person person);
-        Person FindById(int id);
         List<Person> FindAll();
+        Person? FindById(int id);
+        Person Create(Person person);
+        Person? Update(Person person);
         void Delete(int id);
     }
 }

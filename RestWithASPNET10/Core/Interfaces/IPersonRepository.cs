@@ -5,7 +5,7 @@
         List<Person> FindAll();
         Person? FindById(int id);
         Person Create(Person person);
-        Person Update(Person person);
+        Person? Update(Person person);
         void Delete(int id);
     }
 }
