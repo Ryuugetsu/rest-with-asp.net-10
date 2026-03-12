@@ -1,5 +1,7 @@
 ﻿using Core;
+using Mapster;
 using Microsoft.AspNetCore.Mvc;
+using RestWithASPNET10.Data;
 
 namespace RestWithASPNET10.Controllers
 {
@@ -20,14 +22,15 @@ namespace RestWithASPNET10.Controllers
         public IActionResult Get()
         {
             _logger.LogInformation("Retrieving all people");
-            return Ok(_bookService.FindAll());
+            List<BookDTO> book = _bookService.FindAll().Adapt<List<BookDTO>>();
+            return Ok(book);
         }
 
         [HttpGet("{id}")]
         public IActionResult Get(int id)
         {
             _logger.LogInformation("Retrieving book with id {Id}", id);
-            var book = _bookService.FindById(id);
+            BookDTO book = _bookService.FindById(id).Adapt<BookDTO>();
             if (book == null)
             {
                 _logger.LogWarning("Book with id {Id} not found", id);
@@ -38,10 +41,12 @@ namespace RestWithASPNET10.Controllers
         }
 
         [HttpPost]
-        public IActionResult Post([FromBody] Book book)
+        public IActionResult Post([FromBody] BookDTO book)
         {
             _logger.LogInformation("Creating a new book: {Title}", book.Title);
-            var response = _bookService.Create(book);
+
+            Book request = book.Adapt<Book>();
+            BookDTO response = _bookService.Create(request).Adapt<BookDTO>();
             if (response == null)
             {
                 _logger.LogError("Failed to create book: {Title}", book.Title);
@@ -53,10 +58,12 @@ namespace RestWithASPNET10.Controllers
 
 
         [HttpPut]
-        public IActionResult Put([FromBody] Book book)
+        public IActionResult Put([FromBody] BookDTO book)
         {
             _logger.LogInformation("Updating book with id {Id}", book.Id);
-            var response = _bookService.Update(book);
+
+            Book request = book.Adapt<Book>();
+            BookDTO response = _bookService.Update(request).Adapt<BookDTO>();
             if (response == null)
             {
                 _logger.LogWarning("Book with id {Id} not found for update", book.Id);
