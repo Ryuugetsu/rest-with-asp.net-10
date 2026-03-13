@@ -2,4 +2,5 @@
   <Project Path="Core/Core.csproj" Id="57d5ffd0-2330-465f-b567-2e9075276d1e" />
   <Project Path="Infrastructure/Infrastructure.csproj" Id="2bd79226-9bb3-4180-b5e2-7257fe69f51d" />
   <Project Path="RestWithASPNET10/RestWithASPNET10.csproj" />
+  <Project Path="xUnit.Tests/xUnit.Tests.csproj" Id="27bebabb-5e45-4bb7-a79f-495ddac16308" />
 </Solution>
