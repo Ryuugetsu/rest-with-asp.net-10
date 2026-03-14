@@ -14,7 +14,8 @@ builder.Services.AddControllers()
                 .AddJsonOptions(option =>
                 {
                     option.JsonSerializerOptions.Converters.Add(new DateSerializer());
-                }); 
+                })
+                .AddContentNegotiation(); 
 
 builder.Services.AddDatabaseConfiguration(builder.Configuration);
 builder.Services.AddEvolveMigration(builder.Configuration, builder.Environment);
