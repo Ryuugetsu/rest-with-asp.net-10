@@ -15,7 +15,11 @@ builder.Services.AddControllers()
                 {
                     option.JsonSerializerOptions.Converters.Add(new DateSerializer());
                 })
-                .AddContentNegotiation(); 
+                .AddContentNegotiation();
+
+builder.Services.AddEndpointsApiExplorer();
+builder.Services.AddOpenAPIConfig();
+builder.Services.AddSwaggerConfig();
 
 builder.Services.AddDatabaseConfiguration(builder.Configuration);
 builder.Services.AddEvolveMigration(builder.Configuration, builder.Environment);
@@ -33,5 +37,8 @@ app.UseHttpsRedirection();
 app.UseAuthorization();
 
 app.MapControllers();
+
+app.UseSwaggerSpecification();
+app.AddScalarSpecification();
 
 app.Run();
