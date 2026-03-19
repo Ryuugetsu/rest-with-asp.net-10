@@ -4,6 +4,7 @@
     {
         List<T> FindAll();
         T? FindById(int id);
+        List<T> FindWithPagedSearch(int page, int perPage);
         T Create(T obj);
         T? Update(T obj);
         void Delete(int id);

@@ -28,11 +28,23 @@ builder.Services.AddScoped<IPersonService, PersonService>();
 builder.Services.AddScoped<IBookService, BookService>();
 builder.Services.AddScoped(typeof(IRepository<>), typeof(GenericRepository<>));
 
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy("AllowAll", builder =>
+    {
+        builder.AllowAnyOrigin()
+               .AllowAnyMethod()
+               .AllowAnyHeader();
+    });
+});
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
 
 app.UseHttpsRedirection();
+
+app.UseCors("AllowAll");
 
 app.UseAuthorization();
 

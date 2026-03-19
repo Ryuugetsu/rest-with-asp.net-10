@@ -17,6 +17,15 @@ namespace Infrastructure
             return _context.Set<T>().ToList();
         }
 
+        public List<T> FindWithPagedSearch(int page, int perPage)
+        {
+            IQueryable<T> query= _context.Set<T>().AsNoTracking();
+            query = query.OrderBy(e => e.Id);
+            query = query.Skip((page - 1) * perPage).Take(perPage);
+
+            return query.ToList();
+        }
+
         public T? FindById(int id)
         {
             return _context.Set<T>().FirstOrDefault(e => e.Id == id);

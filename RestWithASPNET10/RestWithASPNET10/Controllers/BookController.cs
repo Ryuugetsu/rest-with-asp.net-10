@@ -29,6 +29,18 @@ namespace RestWithASPNET10.Controllers
             return Ok(book);
         }
 
+        [HttpGet("Paged")]
+        [ProducesResponseType(200, Type = typeof(List<BookDTO>))]
+        [ProducesResponseType(400)]
+        [ProducesResponseType(401)]
+        public IActionResult GetPaged([FromQuery] int page, [FromQuery] int perPage)
+        {
+            _logger.LogInformation($"Retrieving all people in page {page}");
+
+            List<BookDTO> book = _bookService.FindWithPagedSearch(page, perPage).Adapt<List<BookDTO>>();
+            return Ok(book);
+        }
+
         [HttpGet("{id}")]
         [ProducesResponseType(200, Type = typeof(BookDTO))]
         [ProducesResponseType(400)]
@@ -87,7 +99,7 @@ namespace RestWithASPNET10.Controllers
         }
 
         [HttpDelete("{id}")]
-        [ProducesResponseType(statusCode:StatusCodes.Status204NoContent)]
+        [ProducesResponseType(statusCode: StatusCodes.Status204NoContent)]
         [ProducesResponseType(400)]
         [ProducesResponseType(401)]
         public IActionResult Delete(int id)

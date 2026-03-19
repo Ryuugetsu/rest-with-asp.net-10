@@ -14,6 +14,11 @@
             return _bookRepository.FindAll();
         }
 
+        public List<Book> FindWithPagedSearch(int page, int perPage)
+        {
+            return _bookRepository.FindWithPagedSearch(page, perPage);
+        }
+
         public Book? FindById(int id)
         {
             return _bookRepository.FindById(id);
