@@ -3,7 +3,7 @@ using FluentAssertions;
 using RestWithASPNET10.Data;
 using RestWithASPNET10.Data.Converter;
 
-namespace xUnit.Tests
+namespace xUnit.Tests.UnitTests
 {
     public class PersonConverterTests
     {

@@ -24,18 +24,7 @@ namespace RestWithASPNET10.Configurations
 
                 try
                 {
-                    using var evolveConnection = new SqlConnection(connectionString);
-
-                    string migrationsPath = Path.Combine(AppContext.BaseDirectory, "DB", "Migrations");
-                    string datasetPath = Path.Combine(AppContext.BaseDirectory, "DB", "Dataset");
-
-                    Evolve evolve = new Evolve(evolveConnection, msg => Log.Information(msg))
-                    {
-                        Locations = new[] { migrationsPath, datasetPath },
-                        IsEraseDisabled = true,
-                    };
-
-                    evolve.Migrate();
+                    ExecuteMigration(connectionString);
                 }
                 catch (Exception ex)
                 {
@@ -46,6 +35,22 @@ namespace RestWithASPNET10.Configurations
 
 
             return services;
+        }
+
+        public static void ExecuteMigration(string connectionString)
+        {
+            using var evolveConnection = new SqlConnection(connectionString);
+
+            string migrationsPath = Path.Combine(AppContext.BaseDirectory, "DB", "Migrations");
+            string datasetPath = Path.Combine(AppContext.BaseDirectory, "DB", "Dataset");
+
+            Evolve evolve = new Evolve(evolveConnection, msg => Log.Information(msg))
+            {
+                Locations = new[] { migrationsPath, datasetPath },
+                IsEraseDisabled = true,
+            };
+
+            evolve.Migrate();
         }
     }
 }

@@ -7,6 +7,7 @@ namespace RestWithASPNET10.Controllers
 {
     [ApiController]
     [Route("api/[controller]")]
+    //[EnableCors("LocalPolicy")]
     public class PersonController : ControllerBase
     {
         private IPersonService _personService;

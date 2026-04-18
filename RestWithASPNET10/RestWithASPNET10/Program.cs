@@ -28,15 +28,17 @@ builder.Services.AddScoped<IPersonService, PersonService>();
 builder.Services.AddScoped<IBookService, BookService>();
 builder.Services.AddScoped(typeof(IRepository<>), typeof(GenericRepository<>));
 
-builder.Services.AddCors(options =>
-{
-    options.AddPolicy("AllowAll", builder =>
-    {
-        builder.AllowAnyOrigin()
-               .AllowAnyMethod()
-               .AllowAnyHeader();
-    });
-});
+//builder.Services.AddCors(options =>
+//{
+//    options.AddPolicy("AllowAll", builder =>
+//    {
+//        builder.AllowAnyOrigin()
+//               .AllowAnyMethod()
+//               .AllowAnyHeader();
+//    });
+//});
+
+builder.Services.AddCorsConfiguration(builder.Configuration);
 
 var app = builder.Build();
 
@@ -44,7 +46,8 @@ var app = builder.Build();
 
 app.UseHttpsRedirection();
 
-app.UseCors("AllowAll");
+app.UseRouting();
+app.UseCorsConfiguration(builder.Configuration);
 
 app.UseAuthorization();
 
