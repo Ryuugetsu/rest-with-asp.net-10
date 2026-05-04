@@ -5,7 +5,7 @@ namespace Infrastructure
 {
     public class GenericRepository<T> : IRepository<T> where T : BaseEntity
     {
-        private readonly DataContext _context;
+        protected readonly DataContext _context;
 
         public GenericRepository(DataContext context)
         {

@@ -1,8 +1,9 @@
 using Core;
+using Core.Interfaces.Repositories;
 using Infrastructure;
 using Infrastructure.JsonSerializer;
+using Infrastructure.Repositories;
 using RestWithASPNET10.Configurations;
-using System.ComponentModel;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -26,6 +27,7 @@ builder.Services.AddEvolveMigration(builder.Configuration, builder.Environment);
 
 builder.Services.AddScoped<IPersonService, PersonService>();
 builder.Services.AddScoped<IBookService, BookService>();
+builder.Services.AddScoped<IPersonRepository, PersonRepository>();
 builder.Services.AddScoped(typeof(IRepository<>), typeof(GenericRepository<>));
 
 //builder.Services.AddCors(options =>

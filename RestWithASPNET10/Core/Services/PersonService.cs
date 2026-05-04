@@ -1,10 +1,12 @@
-﻿namespace Core
+﻿using Core.Interfaces.Repositories;
+
+namespace Core
 {
     public class PersonService : IPersonService
     {
-        private readonly IRepository<Person> _personRepository;
+        private readonly IPersonRepository _personRepository;
 
-        public PersonService(IRepository<Person> personRepository)
+        public PersonService(IPersonRepository personRepository)
         {
             _personRepository = personRepository;
         }
@@ -32,6 +34,11 @@
         public void Delete(int id)
         {
             _personRepository.Delete(id);
+        }
+
+        public Person Disable(int id)
+        {
+            return _personRepository.Disable(id);
         }
     }
 }

@@ -102,5 +102,24 @@ namespace RestWithASPNET10.Controllers
             _logger.LogDebug("Person with id {Id} deleted successfully", id);
             return NoContent();
         }
+
+        [HttpPatch("{id}")]
+        [ProducesResponseType(200, Type = typeof(PersonDTO))]
+        [ProducesResponseType(400)]
+        [ProducesResponseType(401)]
+        public IActionResult Patch(int id)
+        {
+            _logger.LogInformation("Disabling person with id {Id}", id);
+
+            PersonDTO response = _converter.Parse(_personService.Disable(id));
+            if (response == null)
+            {
+                _logger.LogWarning("Person with id {Id} not found for disable", id);
+                return NotFound();
+            }
+
+            _logger.LogDebug("Person with id {Id} disabled successfully", id);
+            return Ok(response);
+        }
     }
 }

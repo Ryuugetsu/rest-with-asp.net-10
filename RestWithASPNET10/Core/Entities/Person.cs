@@ -10,5 +10,6 @@ namespace Core
         [Required, MaxLength(80)] public string? LastName { get; set; }
         [Required, MaxLength(100)] public string? Address { get; set; }
         [Required, MaxLength(6)] public string? Gender { get; set; }
+        [Required] public bool Enabled { get; set; }
     }
 }

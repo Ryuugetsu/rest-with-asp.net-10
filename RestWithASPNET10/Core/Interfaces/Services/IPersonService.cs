@@ -7,5 +7,6 @@
         Person Create(Person person);
         Person? Update(Person person);
         void Delete(int id);
+        Person Disable(int id);
     }
 }
