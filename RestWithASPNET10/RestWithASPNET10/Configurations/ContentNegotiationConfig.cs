@@ -12,8 +12,8 @@ namespace RestWithASPNET10.Configurations
                 options.RespectBrowserAcceptHeader = true;
                 options.ReturnHttpNotAcceptable = true;
                
-                options.FormatterMappings.SetMediaTypeMappingForFormat(
-                    "xml", MediaTypeHeaderValue.Parse("application/xml"));
+                //options.FormatterMappings.SetMediaTypeMappingForFormat(
+                //    "xml", MediaTypeHeaderValue.Parse("application/xml"));
                 options.FormatterMappings.SetMediaTypeMappingForFormat(
                     "json", MediaTypeHeaderValue.Parse("application/json"));
             })

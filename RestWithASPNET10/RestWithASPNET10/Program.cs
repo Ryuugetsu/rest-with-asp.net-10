@@ -23,6 +23,7 @@ builder.Services.AddOpenAPIConfig();
 builder.Services.AddSwaggerConfig();
 
 builder.Services.AddDatabaseConfiguration(builder.Configuration);
+Console.WriteLine(builder.Configuration.GetConnectionString("DefaultConnection"));
 builder.Services.AddEvolveMigration(builder.Configuration, builder.Environment);
 
 builder.Services.AddScoped<IPersonService, PersonService>();
@@ -46,7 +47,10 @@ var app = builder.Build();
 
 // Configure the HTTP request pipeline.
 
-app.UseHttpsRedirection();
+if (!app.Environment.IsDevelopment())
+{
+    app.UseHttpsRedirection();
+}
 
 app.UseRouting();
 app.UseCorsConfiguration(builder.Configuration);
@@ -58,4 +62,5 @@ app.MapControllers();
 app.UseSwaggerSpecification();
 app.AddScalarSpecification();
 
-app.Run();
+var port = Environment.GetEnvironmentVariable("PORT") ?? "8080";
+app.Run($"http://*:{port}");
